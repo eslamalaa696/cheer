@@ -21,7 +21,7 @@ class _ClenderState extends State<Clender> {
         appBar: AppBar(
         ),
         body: Container(
-          padding: EdgeInsets.all(22,),
+          padding: EdgeInsets.only(left: 11,right: 11,),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children:[
@@ -60,7 +60,54 @@ class _ClenderState extends State<Clender> {
                 },
 
               ),
-              SizedBox(height: 44,),
+              SizedBox(height: 7,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text("Today",style:TextStyle(fontSize: 20,color: Colors.black),),
+                  Text("Tomorrow",style:TextStyle(fontSize: 20,color: Colors.black),),
+                  Text("sunday",style:TextStyle(fontSize: 20,color: Colors.black),)
+                ],
+              ),
+              Expanded(
+                child: GridView.builder(
+                    padding: EdgeInsets.all(8),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      crossAxisSpacing: 15.0,
+                      mainAxisSpacing: 11.0,
+                    ),
+                    itemCount: 12,
+                    itemBuilder: (BuildContext ctx, index) {
+                      return Container(
+                        padding: EdgeInsets.only(top:9,left: 9, ),
+                        // alignment: Alignment.center,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children:[
+                            Column(children: [Icon(Icons.access_time_filled_sharp,color:Colors.lightBlueAccent ,size:26 ),
+                              SizedBox(height: 5,),
+                              Text("60",style:TextStyle(fontSize: 18,color: Colors.lightBlueAccent)),
+                              SizedBox(height: 2,),
+                              Text("Min",style:TextStyle(fontSize: 18,color: Colors.lightBlueAccent),),],),
+                            SizedBox(width: 8,),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("12:30",style:TextStyle(fontSize: 16,color: Colors.black),),
+                                Text("Am",style:TextStyle(fontSize: 16,color: Colors.black),),
+
+                              ],
+                            ),
+                          ],
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.white70,
+                            borderRadius: BorderRadius.circular(15)),
+                      );
+                    }),
+              ),
+
               ElevatedButton.icon(
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
@@ -80,19 +127,19 @@ class _ClenderState extends State<Clender> {
                   ),
                 ),
 
-                label: Text(" Book     "),
+                label: Text(" Contiue     "),
                 icon: Icon(Icons.bookmark_add,color:Color(0xFF012A4A), ),
-               onPressed: (){
-                 {
-                   ScaffoldMessenger.of(context).showSnackBar(
-                     SnackBar(
-                       backgroundColor: Colors.green,
-                       content: Text("Booked successfully"),
-                     ),
-                   );
-                 }
-                 ;
-               },
+                onPressed: (){
+                  {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Text("Booked successfully"),
+                      ),
+                    );
+                  }
+                  ;
+                },
               ),
             ],
           ),
